@@ -1,5 +1,5 @@
-import { createTRPCRouter } from "@sat/server/api/trpc";
-import { exampleRouter } from "@sat/server/api/routers/example";
+import { createTRPCRouter } from '@sat/server/api/trpc';
+import { exampleRouter } from '@sat/server/api/routers/example';
 
 /**
  * This is the primary router for your server.
