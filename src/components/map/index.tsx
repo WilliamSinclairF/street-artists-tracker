@@ -5,9 +5,10 @@ type Props = {
   height: number;
   width: number;
   mapCenter: google.maps.LatLngLiteral | google.maps.LatLng;
+  onClick: (e: google.maps.MapMouseEvent) => void;
 };
 
-const Map = ({ children, mapCenter, width, height }: Props) => {
+const Map = ({ children, mapCenter, width, height, onClick }: Props) => {
   const mapOptions: google.maps.MapOptions = {
     disableDefaultUI: true,
     clickableIcons: true,
@@ -30,6 +31,7 @@ const Map = ({ children, mapCenter, width, height }: Props) => {
   return (
     <GoogleMap
       options={mapOptions}
+      onClick={onClick}
       zoom={10}
       center={mapCenter}
       mapTypeId={google.maps.MapTypeId.ROADMAP}

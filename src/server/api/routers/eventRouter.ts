@@ -18,7 +18,6 @@ export const eventRouter = createTRPCRouter({
 
   getEventsByDate: protectedProcedure.input(z.object({ date: z.date() })).query(({ ctx, input }) => {
     const dateWithNoTimeStamp = input.date.toISOString().split('T')[0];
-
     return ctx.prisma.event.findMany({
       where: { date: new Date(dateWithNoTimeStamp as string) },
       include: {
@@ -26,5 +25,17 @@ export const eventRouter = createTRPCRouter({
         creator: { include: { profile: true } },
       },
     });
+  }),
+
+  getEventById: protectedProcedure.input(z.object({ id: z.string() })).query(async ({ ctx, input }) => {
+    const event = await ctx.prisma.event.findUniqueOrThrow({
+      where: { id: input.id },
+      include: {
+        attendees: { include: { user: { include: { profile: true } } } },
+        creator: { include: { profile: true } },
+      },
+    });
+
+    return event;
   }),
 });

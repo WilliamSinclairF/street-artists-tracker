@@ -22,13 +22,19 @@ export const Nav = ({ position }: NavProps) => {
           {sessionData && (
             <>
               <li>
-                <Link className='text-lg font-medium text-slate-900 hover:text-slate-700' href={'/'}>Home</Link>
+                <Link className="text-lg font-medium text-slate-900 hover:text-slate-700" href={'/'}>
+                  Home
+                </Link>
               </li>
               <li>
-                <Link className='text-lg font-medium text-slate-900 hover:text-slate-700' href={'/map'}>Map</Link>
+                <Link className="text-lg font-medium text-slate-900 hover:text-slate-700" href={'/map'}>
+                  Map
+                </Link>
               </li>
               <li>
-                <Link className='text-lg font-medium text-slate-900 hover:text-slate-700' href={'/profile'}>Profile</Link>
+                <Link className="text-lg font-medium text-slate-900 hover:text-slate-700" href={'/profile'}>
+                  Profile
+                </Link>
               </li>
             </>
           )}
