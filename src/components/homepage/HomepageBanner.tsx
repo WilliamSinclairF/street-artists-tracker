@@ -16,10 +16,10 @@ export const HomepageBanner = () => {
     console.log('Stored isArtist value:', isArtist);
 
     mutation.mutate({
-      description: 'test',
-      firstName: 'test',
-      lastName: 'test',
       isArtist,
+      firstName: undefined,
+      lastName: undefined,
+      description: undefined,
     });
   }, []);
 
