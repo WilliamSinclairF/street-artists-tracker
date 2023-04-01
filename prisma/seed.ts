@@ -10,11 +10,14 @@ async function main() {
 
     if (!id) throw new Error('No user found!');
 
+    const date = new Date();
+    date.setDate(date.getDate() + i);
+
     prisma.event
       .create({
         data: {
-          date: new Date(),
-          time: new Date(),
+          date: date,
+          time: date,
           description: 'This a very cool event ' + i.toString(),
           title: 'This a very cool event ' + i.toString(),
           creator: { connect: { id } },
