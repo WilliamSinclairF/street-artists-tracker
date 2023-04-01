@@ -85,8 +85,6 @@ const EventTest = ({
     })[];
   };
 }) => {
-  console.log(event);
-
   return (
     <ul>
       <li>

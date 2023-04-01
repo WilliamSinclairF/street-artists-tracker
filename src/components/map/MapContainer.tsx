@@ -8,8 +8,6 @@ const MapContainer = ({ children, onResize }: Props) => {
 
   const { height, width } = useWithAndHeightObserver(mapContainerRef);
 
-  console.log(height, width);
-
   useEffect(() => {
     onResize(width, height);
   }, [height, width, onResize]);

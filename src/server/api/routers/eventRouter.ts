@@ -19,8 +19,6 @@ export const eventRouter = createTRPCRouter({
   getEventsByDate: protectedProcedure.input(z.object({ date: z.date() })).query(({ ctx, input }) => {
     const dateWithNoTimeStamp = input.date.toISOString().split('T')[0];
 
-    console.log(input.date.toISOString().split('T'));
-
     return ctx.prisma.event.findMany({
       where: { date: new Date(dateWithNoTimeStamp as string) },
       include: {
