@@ -15,7 +15,7 @@ const MapContainer = ({ children, onResize }: Props) => {
   }, [height, width, onResize]);
 
   return (
-    <div className="col-span-2" ref={mapContainerRef}>
+    <div className="col-span-2 m-2 max-h-[80vh]" ref={mapContainerRef}>
       {children}
     </div>
   );

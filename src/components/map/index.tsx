@@ -30,11 +30,10 @@ const Map = ({ children, mapCenter, width, height }: Props) => {
   return (
     <GoogleMap
       options={mapOptions}
-      zoom={12}
+      zoom={10}
       center={mapCenter}
       mapTypeId={google.maps.MapTypeId.ROADMAP}
-      mapContainerStyle={{ height, width }}
-      mapContainerClassName="m-auto">
+      mapContainerStyle={{ height, width }}>
       {children}
     </GoogleMap>
   );
