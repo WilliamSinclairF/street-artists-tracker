@@ -2,9 +2,10 @@ import { type NextPage } from 'next';
 import { signIn, signOut, useSession } from 'next-auth/react';
 
 import { GoogleMap, MarkerF, useLoadScript } from '@react-google-maps/api';
-import { api } from '@sat/utils/api';
 
 const Home: NextPage = () => {
+  const { data: sessionData } = useSession();
+
   /*   START OF MAP STUFF FOR TESTING
   stuff to get the map to show up to test the google API key, feel free to move it to a separate file or do whatever with it*/
   const mapOptions: google.maps.MapOptions = {
@@ -49,16 +50,10 @@ export default Home;
 const AuthShowcase: React.FC = () => {
   const { data: sessionData } = useSession();
 
-  const { data: secretMessage } = api.example.getSecretMessage.useQuery(
-    undefined, // no input
-    { enabled: sessionData?.user !== undefined }
-  );
-
   return (
     <div className="flex flex-col items-center justify-center gap-4">
       <p className="text-center text-2xl text-black">
         {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
-        {secretMessage && <span> - {secretMessage}</span>}
       </p>
       <button
         className="rounded-full bg-white/10 px-10 py-3 font-semibold text-black no-underline transition hover:bg-white/20"
