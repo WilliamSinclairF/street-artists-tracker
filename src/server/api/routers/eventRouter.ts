@@ -59,7 +59,6 @@ export const eventRouter = createTRPCRouter({
         attendees: { include: { user: { include: { profile: true } } } },
         creator: { include: { profile: true } },
       },
-      orderBy: { createdAt: 'desc' },
     });
 
     return event;
