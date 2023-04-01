@@ -2,7 +2,6 @@ import { type NextPage } from 'next';
 import { signIn, signOut, useSession } from 'next-auth/react';
 
 import { GoogleMap, MarkerF, useLoadScript } from '@react-google-maps/api';
-import { api } from '@sat/utils/api';
 
 const Home: NextPage = () => {
   const { data: sessionData } = useSession();
@@ -23,23 +22,13 @@ const Home: NextPage = () => {
     libraries: ['places'],
   });
 
-  const { data, error, isLoading } = api.eventsRouter.getEventsCreatedByCurrentUser.useQuery(
-    undefined, // no input
-    { enabled: sessionData?.user !== undefined }
-  );
-
   if (!isLoaded) {
     return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p>Something went wrong: {error.message}</p>;
   }
 
   return (
     <>
       <h1>Hello - Tyrell autodeploytest</h1>
-      {data?.length && <p>{data[0].title}</p>}
       <AuthShowcase />;
       <GoogleMap
         onClick={() => void true}
