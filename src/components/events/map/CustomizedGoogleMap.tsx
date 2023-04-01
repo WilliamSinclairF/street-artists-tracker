@@ -8,7 +8,9 @@ type Props = {
   onClick: (e: google.maps.MapMouseEvent) => void;
 };
 
-const Map = ({ children, mapCenter, width, height, onClick }: Props) => {
+const mapLibs: 'places'[] = ['places'];
+
+const CustomizedGoogleMap = ({ children, mapCenter, width, height, onClick }: Props) => {
   const mapOptions: google.maps.MapOptions = {
     disableDefaultUI: true,
     clickableIcons: true,
@@ -17,7 +19,7 @@ const Map = ({ children, mapCenter, width, height, onClick }: Props) => {
 
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY || '',
-    libraries: ['places'],
+    libraries: mapLibs,
   });
 
   if (!isLoaded) {
@@ -41,4 +43,4 @@ const Map = ({ children, mapCenter, width, height, onClick }: Props) => {
   );
 };
 
-export default Map;
+export default CustomizedGoogleMap;

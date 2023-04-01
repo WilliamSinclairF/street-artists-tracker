@@ -7,7 +7,6 @@ import { type GetServerSidePropsContext, type InferGetServerSidePropsType, type 
 const EventDetailPage: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = ({ event }) => (
   <>
     <Nav position="relative" />
-
     <h1>{event.title}</h1>
   </>
 );
