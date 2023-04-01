@@ -5,9 +5,10 @@ interface AuthButtonProps {
   hoverColour: string;
   signInText: string;
   signOutText: string;
+  isArtist: boolean;
 }
 
-const AuthButton: React.FC<AuthButtonProps> = ({ colour, hoverColour, signInText, signOutText }) => {
+const AuthButton: React.FC<AuthButtonProps> = ({ colour, hoverColour, signInText, signOutText, isArtist }) => {
   const { data: sessionData } = useSession();
 
   return (
