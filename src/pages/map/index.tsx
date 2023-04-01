@@ -1,21 +1,22 @@
 import { Nav } from '@sat/components/nav/Nav';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import Map from '@sat/components/map';
 import MapTabs from '../../components/map/MapTabs';
 import { addDaysToDate } from '@sat/utils/addDaysToDate';
 
-function map() {
+function MapPage() {
   const session = useSession();
   const router = useRouter();
-
   const mapCenter = { lat: 49.246292, lng: -123.116226 };
-
   // Navigating to Home is not authenticated
   useEffect(() => {
     if (session.status === 'unauthenticated') {
-      router.push('/');
+      router
+        .push('/')
+        .then(() => null)
+        .catch(() => null);
     }
   }, [session, router]);
 
@@ -47,4 +48,4 @@ function map() {
     )
   );
 }
-export default map;
+export default MapPage;
