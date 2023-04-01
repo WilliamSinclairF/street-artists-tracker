@@ -1,11 +1,17 @@
 import AuthButton from '../auth/AuthButton';
 import { useSession } from 'next-auth/react';
 import { api } from '@sat/utils/api';
+import { useEffect } from 'react';
 
 export const HomepageBanner = () => {
   const { data: sessionData } = useSession();
   const { testData } = api.isArtistRouter.getAll.useQuery();
   console.log(testData);
+
+  useEffect(() => {
+    const storedIsArtist = localStorage.getItem('isArtist');
+    console.log('Stored isArtist value:', storedIsArtist);
+  }, []);
 
   return (
     <main
