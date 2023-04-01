@@ -9,7 +9,6 @@ import { addDaysToDate } from '@sat/utils/addDaysToDate';
 function map() {
   const session = useSession();
   const router = useRouter();
-  const { data: sessionData } = useSession();
 
   const mapCenter = { lat: 49.246292, lng: -123.116226 };
 
@@ -20,13 +19,10 @@ function map() {
     }
   }, [session, router]);
 
-  const currentDate = new Date();
-
-  const datesOfNextSevenDays = Array.from({ length: 7 }).map((_, i) =>
-    addDaysToDate(i).toLocaleString('en-us', { weekday: 'long', day: 'numeric', month: 'long' })
-  );
-
-  console.log(datesOfNextSevenDays);
+  const datesOfNextSevenDays = Array.from({ length: 7 }).map((_, i) => ({
+    humanFriendlyDate: addDaysToDate(i).toLocaleString('en-us', { weekday: 'short', day: 'numeric', month: 'short' }),
+    date: addDaysToDate(i),
+  }));
 
   return (
     session.status === 'authenticated' && (
@@ -34,7 +30,12 @@ function map() {
         <Nav position="relative" />
         <div className="container m-auto grid h-full grid-cols-3">
           <div className="col-span-full">
-            <MapTabs tabs={datesOfNextSevenDays} />
+            <MapTabs
+              tabs={datesOfNextSevenDays}
+              onValueChange={(e) => {
+                console.log(e);
+              }}
+            />
           </div>
 
           <div className="col-span-2"></div>
