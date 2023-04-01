@@ -5,9 +5,12 @@ type Props = {
   height: number;
   width: number;
   mapCenter: google.maps.LatLngLiteral | google.maps.LatLng;
+  onClick: (e: google.maps.MapMouseEvent) => void;
 };
 
-const Map = ({ children, mapCenter, width, height }: Props) => {
+const mapLibs: 'places'[] = ['places'];
+
+const CustomizedGoogleMap = ({ children, mapCenter, width, height, onClick }: Props) => {
   const mapOptions: google.maps.MapOptions = {
     disableDefaultUI: true,
     clickableIcons: true,
@@ -16,7 +19,7 @@ const Map = ({ children, mapCenter, width, height }: Props) => {
 
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY || '',
-    libraries: ['places'],
+    libraries: mapLibs,
   });
 
   if (!isLoaded) {
@@ -30,6 +33,7 @@ const Map = ({ children, mapCenter, width, height }: Props) => {
   return (
     <GoogleMap
       options={mapOptions}
+      onClick={onClick}
       zoom={10}
       center={mapCenter}
       mapTypeId={google.maps.MapTypeId.ROADMAP}
@@ -39,4 +43,4 @@ const Map = ({ children, mapCenter, width, height }: Props) => {
   );
 };
 
-export default Map;
+export default CustomizedGoogleMap;

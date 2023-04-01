@@ -22,11 +22,11 @@ const AuthButton: React.FC<AuthButtonProps> = ({ colour, hoverColour, signInText
 
   const handleButtonClick = () => {
     if (sessionData) {
-      signOut();
+      void signOut();
       localStorage.removeItem('isArtist');
       setLocalIsArtist(null);
     } else {
-      signIn();
+      void signIn();
       localStorage.setItem('isArtist', String(isArtist));
       setLocalIsArtist(isArtist);
     }

@@ -65,7 +65,7 @@ function Profile() {
     console.log('Stored isArtist value:', isArtist);
 
     mutation.mutate({
-      description: descriptionInput.length > 0 ? descriptionInput : description,
+      description: descriptionInput.length > 0 ? descriptionInput : description || '',
       firstName: firstNameInput.length > 0 ? firstNameInput : firstName,
       lastName: lastNameInput.length > 0 ? lastNameInput : lastName,
       isArtist,
@@ -170,7 +170,11 @@ function Profile() {
                     {getEventsByUser.data?.map((event) => (
                       <li className="my-2 rounded-md bg-slate-400 p-2">
                         <p className="text-xl font-semibold">{event.title}</p>
-                        <p className="font-semibold text-sm">{event.date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).replace(/(\d+)(st|nd|rd|th)/, '$1<span>$2</span>')}</p>
+                        <p className="text-sm font-semibold">
+                          {event.date
+                            .toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+                            .replace(/(\d+)(st|nd|rd|th)/, '$1<span>$2</span>')}
+                        </p>
 
                         <p className="text-md">{event.description}</p>
                         <p className="text-md">Attendees: {event.attendees.length}</p>

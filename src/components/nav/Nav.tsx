@@ -11,7 +11,7 @@ interface NavProps {
 export const Nav = ({ position }: NavProps) => {
   const { data: sessionData } = useSession();
   return (
-    <nav className={`flex w-full items-center justify-between bg-slate-200 px-[10vw] py-2 ${position} z-10`}>
+    <nav className={`flex w-full items-center justify-between bg-slate-200 px-[10vw] py-2 ${position} z-10 h-28`}>
       <Link href={'/'}>
         <div className="relative h-[100px] w-[100px]">
           <Image className="h-full w-full" priority src="/images/logo.svg" fill alt="Street Artist Tracker" />
@@ -22,13 +22,19 @@ export const Nav = ({ position }: NavProps) => {
           {sessionData && (
             <>
               <li>
-                <Link className='text-lg font-medium text-slate-900 hover:text-slate-700' href={'/'}>Home</Link>
+                <Link className="text-lg font-medium text-slate-900 hover:text-slate-700" href={'/'}>
+                  Home
+                </Link>
               </li>
               <li>
-                <Link className='text-lg font-medium text-slate-900 hover:text-slate-700' href={'/map'}>Map</Link>
+                <Link className="text-lg font-medium text-slate-900 hover:text-slate-700" href={'/events'}>
+                  Map
+                </Link>
               </li>
               <li>
-                <Link className='text-lg font-medium text-slate-900 hover:text-slate-700' href={'/profile'}>Profile</Link>
+                <Link className="text-lg font-medium text-slate-900 hover:text-slate-700" href={'/profile'}>
+                  Profile
+                </Link>
               </li>
             </>
           )}

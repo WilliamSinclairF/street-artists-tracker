@@ -1,9 +1,7 @@
 import { type NextPage } from 'next';
 
-import { GoogleMap, MarkerF, useLoadScript } from '@react-google-maps/api';
-import { api } from '@sat/utils/api';
-import { Nav } from '@sat/components/nav/Nav';
 import { HomepageBanner } from '@sat/components/homepage/HomepageBanner';
+import { Nav } from '@sat/components/nav/Nav';
 
 const Home: NextPage = () => {
   /*   START OF MAP STUFF FOR TESTING
