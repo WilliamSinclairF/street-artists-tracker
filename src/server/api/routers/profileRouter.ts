@@ -14,9 +14,9 @@ export const profileRouter = createTRPCRouter({
     .input(
       z.object({
         isArtist: z.boolean().default(false),
-        firstName: z.string().default(''),
-        lastName: z.string().default(''),
-        description: z.string().default(''),
+        firstName: z.string(),
+        lastName: z.string(),
+        description: z.string(),
       })
     )
     .mutation(async ({ ctx, input }) => {
