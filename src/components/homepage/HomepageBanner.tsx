@@ -19,7 +19,7 @@ export const HomepageBanner = () => {
               </h2>
               <h3 className="pt-2 text-2xl text-white">Check out some awesome artists in your City today!</h3>
               <a href={'/map'}>
-                <button className="mt-2 rounded-full bg-orange-400 px-8 py-3 font-semibold text-white hover:bg-orange-500">
+                <button className="mt-5 rounded-full bg-orange-400 px-8 py-3 font-semibold text-white hover:bg-orange-500">
                   Explore Artists
                 </button>
               </a>
@@ -39,7 +39,7 @@ export const HomepageBanner = () => {
                 Sign up as an <span className="font-semibold text-orange-400">Artist</span> or an{' '}
                 <span className="font-semibold text-blue-500">Art Lover</span> 👇
               </p>
-              <div className="auth flex justify-center gap-3">
+              <div className="auth flex justify-center gap-3 pt-1">
                 <AuthButton
                   colour="bg-orange-500"
                   hoverColour="bg-orange-400"
