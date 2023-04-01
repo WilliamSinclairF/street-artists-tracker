@@ -17,9 +17,6 @@ export const HomepageBanner = () => {
 
     mutation.mutate({
       isArtist,
-      firstName: undefined,
-      lastName: undefined,
-      description: undefined,
     });
   }, []);
 
