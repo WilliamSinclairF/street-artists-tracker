@@ -1,9 +1,8 @@
 import { type NextPage } from 'next';
-import { signIn, signOut, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 
-import { GoogleMap, MarkerF, useLoadScript } from '@react-google-maps/api';
-import { RouterOutputs, api } from '@sat/utils/api';
-import { Event, EventAttendee, Profile, User } from '@prisma/client';
+import { type Event, type EventAttendee, type Profile, type User } from '@prisma/client';
+import { api } from '@sat/utils/api';
 
 const JustTesting: NextPage = () => {
   const { data: sessionData } = useSession();
