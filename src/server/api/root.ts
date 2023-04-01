@@ -1,7 +1,7 @@
 import { userRouter } from './routers/userRouter';
 import { createTRPCRouter } from '@sat/server/api/trpc';
 import { eventRouter } from '@sat/server/api/routers/eventRouter';
-import { isArtistRouter } from './routers/isArtistRouter';
+import { profileRouter } from './routers/profileRouter';
 
 /**
  * This is the primary router for your server.
@@ -11,7 +11,7 @@ import { isArtistRouter } from './routers/isArtistRouter';
 export const appRouter = createTRPCRouter({
   eventRouter,
   userRouter,
-  isArtistRouter,
+  profileRouter,
 });
 
 // export type definition of API

@@ -5,12 +5,22 @@ import { useEffect } from 'react';
 
 export const HomepageBanner = () => {
   const { data: sessionData } = useSession();
-  const { testData } = api.isArtistRouter.getAll.useQuery();
-  console.log(testData);
+
+  const mutation = api.profileRouter.createOrUpdateProfile.useMutation({
+    onError: (error) => console.log(error),
+    onSuccess: (data) => console.log(data),
+  });
 
   useEffect(() => {
-    const storedIsArtist = localStorage.getItem('isArtist');
-    console.log('Stored isArtist value:', storedIsArtist);
+    const isArtist = localStorage.getItem('isArtist') === 'true';
+    console.log('Stored isArtist value:', isArtist);
+
+    mutation.mutate({
+      description: 'test',
+      firstName: 'test',
+      lastName: 'test',
+      isArtist,
+    });
   }, []);
 
   return (
