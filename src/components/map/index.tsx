@@ -1,12 +1,13 @@
 import { GoogleMap, useLoadScript } from '@react-google-maps/api';
-import { CSSProperties } from 'react';
 
 type Props = {
   children?: React.ReactNode;
+  height: number;
+  width: number;
   mapCenter: google.maps.LatLngLiteral | google.maps.LatLng;
 };
 
-const Map = ({ children, mapCenter }: Props) => {
+const Map = ({ children, mapCenter, width, height }: Props) => {
   const mapOptions: google.maps.MapOptions = {
     disableDefaultUI: true,
     clickableIcons: true,
@@ -32,7 +33,8 @@ const Map = ({ children, mapCenter }: Props) => {
       zoom={12}
       center={mapCenter}
       mapTypeId={google.maps.MapTypeId.ROADMAP}
-      mapContainerStyle={{ height: 400, width: 'auto' }}>
+      mapContainerStyle={{ height, width }}
+      mapContainerClassName="m-auto">
       {children}
     </GoogleMap>
   );

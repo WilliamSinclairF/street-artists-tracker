@@ -3,13 +3,14 @@ import * as Tabs from '@radix-ui/react-tabs';
 
 type Props = {
   tabs: { humanFriendlyDate: string; date: Date }[];
+  children: React.ReactNode;
   onValueChange: (tabData: { humanFriendlyDate: string; date: Date }) => void;
 };
 
 const activeTabBorderClasses = 'data-[state=active]:border-x-2 data-[state=active]:border-t-2';
 const inactiveTabBorderClasses = 'data-[state=inactive]:border-b-2';
 
-const MapTabs = ({ tabs, onValueChange }: Props) => {
+const MapTabs = ({ tabs, children, onValueChange }: Props) => {
   const handleValueChange = (tabIndex: string) => {
     const parsedIndex = parseInt(tabIndex);
     if (isNaN(parsedIndex)) {
@@ -28,7 +29,7 @@ const MapTabs = ({ tabs, onValueChange }: Props) => {
   };
 
   return (
-    <Tabs.Root onValueChange={handleValueChange} defaultValue="0" className="flex flex-col p-2">
+    <Tabs.Root onValueChange={handleValueChange} defaultValue="0" className="container m-auto mt-2 flex flex-col">
       <Tabs.List className="flex flex-shrink-0">
         {tabs.map((tab, index) => (
           <Tabs.Trigger
@@ -40,8 +41,8 @@ const MapTabs = ({ tabs, onValueChange }: Props) => {
         ))}
       </Tabs.List>
       {tabs.map((tab, index) => (
-        <Tabs.Content key={tab.humanFriendlyDate} value={String(index)}>
-          {tab.humanFriendlyDate}
+        <Tabs.Content asChild key={tab.humanFriendlyDate} value={String(index)}>
+          {children}
         </Tabs.Content>
       ))}
     </Tabs.Root>
