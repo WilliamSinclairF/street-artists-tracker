@@ -17,18 +17,18 @@ export const Nav = ({ position }: NavProps) => {
           <Image className="h-full w-full" priority src="/images/logo.svg" fill alt="Street Artist Tracker" />
         </div>
       </Link>
-      <menu className="m-auto w-full max-w-[150px]">
+      <menu className="m-auto w-full max-w-[180px]">
         <ul className="flex w-full justify-between">
           {sessionData && (
             <>
               <li>
-                <Link href={'/'}>Home</Link>
+                <Link className='text-lg font-medium text-slate-900 hover:text-slate-700' href={'/'}>Home</Link>
               </li>
               <li>
-                <Link href={'/map'}>Map</Link>
+                <Link className='text-lg font-medium text-slate-900 hover:text-slate-700' href={'/map'}>Map</Link>
               </li>
               <li>
-                <Link href={'/profile'}>Profile</Link>
+                <Link className='text-lg font-medium text-slate-900 hover:text-slate-700' href={'/profile'}>Profile</Link>
               </li>
             </>
           )}
