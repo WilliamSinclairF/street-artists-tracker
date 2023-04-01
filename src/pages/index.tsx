@@ -27,7 +27,7 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <h1>Hello - Tyrell sup</h1>
+      <h1>Hello - Tyrell autodeploytest</h1>
       <AuthShowcase />;
       <GoogleMap
         onClick={() => void true}
