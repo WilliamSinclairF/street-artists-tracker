@@ -5,14 +5,12 @@ import MapContainer from '@sat/components/events/map/MapContainer';
 import { type RouterOutputs } from '@sat/utils/api';
 import { isWindowDefined } from '@sat/utils/isWindowDefined';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { Nav } from '../nav/Nav';
+import NewEventDialog from './NewEventDialog/NewEventDialog';
+import MapTab from './map/MapTab';
 
 const mapLibs: 'places'[] = ['places'];
-
-const activeTabBorderClasses = 'border-x-2 border-t-2';
-const inactiveTabBorderClasses = 'border-b-2';
 
 type Props = {
   events: RouterOutputs['eventRouter']['getEventsByDate'];
@@ -20,12 +18,11 @@ type Props = {
 };
 
 const EventsPage = ({ events, datesOfNextSevenDays }: Props) => {
-  const router = useRouter();
   const mapCenter = { lat: 49.246292, lng: -123.116226 };
-
   const [mapWidth, setMapWidth] = useState(0);
   const [mapHeight, setMapHeight] = useState(0);
-
+  const [openNewEventDialog, setOpenNewEventDialog] = useState(false);
+  const [newPinCoords, setNewPinCoords] = useState<{ lat: number; lng: number } | null>(null);
   const { isLoaded: mapIsLoaded, loadError: mapLoadError } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY || '',
     libraries: mapLibs,
@@ -36,30 +33,35 @@ const EventsPage = ({ events, datesOfNextSevenDays }: Props) => {
     setMapHeight(height);
   };
 
+  const handleNewEventModalClose = (status: 'save' | 'discard') => {
+    console.log(status);
+    setOpenNewEventDialog(false);
+  };
+
+  const handleMapClick = (e: google.maps.MapMouseEvent) => {
+    if (!e.latLng) return;
+    setNewPinCoords({ lat: e.latLng.lat(), lng: e.latLng.lng() });
+  };
+
   return (
     <>
       <Nav position="relative" />
       <div className="container z-50 m-auto mt-2 flex flex-col">
+        <NewEventDialog open={openNewEventDialog} onClose={handleNewEventModalClose} />
+
         <div className="flex flex-shrink-0">
-          {datesOfNextSevenDays.map((tab) => (
-            <Link
-              key={tab.humanFriendlyDate}
-              href={`/events/day/${tab.date}`}
-              className={`${
-                router.query.day === tab.date ? activeTabBorderClasses : inactiveTabBorderClasses
-              } flex  h-11 flex-1 select-none flex-col items-center justify-center  bg-white  p-4 text-center text-sm leading-none shadow-sm transition hover:border-gray-200 hover:bg-zinc-100`}>
-              {tab.humanFriendlyDate}
-            </Link>
+          <button onClick={() => setOpenNewEventDialog(true)}>open</button>
+
+          {datesOfNextSevenDays.map((tab, index) => (
+            <MapTab tab={tab} key={tab.humanFriendlyDate} isFirst={index === 0} />
           ))}
         </div>
         <div className="grid min-h-[50vh] grid-cols-4">
-          <div className="col-span-full"></div>
-
           <div className="col-span-2 max-h-[80vh] overflow-y-scroll">
             {events.map((event) => (
               <Link
                 href={`/events/detail/${event.id}`}
-                className="m-auto mt-2 flex flex-col justify-center rounded-lg border bg-zinc-50 p-4 text-center shadow-sm transition hover:border-gray-200 hover:bg-zinc-100 "
+                className="m-auto mt-2 flex flex-col justify-center rounded-md border bg-zinc-50 p-4 text-center transition hover:border-gray-200 hover:bg-zinc-100 "
                 key={event.id}>
                 <EventDetail event={event} />
               </Link>
@@ -68,13 +70,7 @@ const EventsPage = ({ events, datesOfNextSevenDays }: Props) => {
 
           {mapIsLoaded && isWindowDefined() && (
             <MapContainer onResize={handleResize}>
-              <CustomizedGoogleMap
-                mapCenter={mapCenter}
-                width={mapWidth}
-                height={mapHeight}
-                onClick={(e) => {
-                  return;
-                }}>
+              <CustomizedGoogleMap mapCenter={mapCenter} width={mapWidth} height={mapHeight} onClick={handleMapClick}>
                 {events.map((event) => (
                   <MarkerF
                     key={event.id}

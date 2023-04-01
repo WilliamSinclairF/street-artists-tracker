@@ -17,7 +17,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const session = await getServerAuthSession(context);
 
   if (!session) {
-    console.log('No session found');
     // TODO: Redirect to login page that exists
     return { redirect: { destination: '/', permanent: false } };
   }
