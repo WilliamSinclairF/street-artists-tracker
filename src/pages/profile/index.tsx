@@ -65,7 +65,7 @@ function Profile() {
     console.log('Stored isArtist value:', isArtist);
 
     mutation.mutate({
-      description: descriptionInput.length > 0 ? descriptionInput : description,
+      description: descriptionInput.length > 0 ? descriptionInput : description || '',
       firstName: firstNameInput.length > 0 ? firstNameInput : firstName,
       lastName: lastNameInput.length > 0 ? lastNameInput : lastName,
       isArtist,
@@ -88,7 +88,7 @@ function Profile() {
                       style={{
                         backgroundImage: `url(${sessionData?.user?.image || ''})`,
                         backgroundSize: 'cover',
-                        outline: '3px solid rgb(125 211 252)'
+                        outline: '3px solid rgb(125 211 252)',
                       }}></div>
                     <div className="mt-2">
                       {localStorage.getItem('isArtist') === 'true' ? (
@@ -102,21 +102,21 @@ function Profile() {
               </div>
             </div>
             <div className="right pl-8 pt-4">
-              <div className='flex gap-2'>
-              <h1 className='text-2xl font-semibold'>Profile Information</h1>
-              <div className="edit">
-                {editing ? (
-                  <button className="bg-green-300 px-2 py-1" onClick={saveHandler}>
-                    Save
-                  </button>
-                ) : (
-                  <button className="bg-slate-300 px-2 py-1" onClick={editHandler}>
-                    Edit
-                  </button>
-                )}
+              <div className="flex gap-2">
+                <h1 className="text-2xl font-semibold">Profile Information</h1>
+                <div className="edit">
+                  {editing ? (
+                    <button className="bg-green-300 px-2 py-1" onClick={saveHandler}>
+                      Save
+                    </button>
+                  ) : (
+                    <button className="bg-slate-300 px-2 py-1" onClick={editHandler}>
+                      Edit
+                    </button>
+                  )}
+                </div>
               </div>
-              </div>
-              <div className='pt-3'>
+              <div className="pt-3">
                 <p className="pb-2">
                   First name:{' '}
                   {editing ? (
@@ -148,7 +148,7 @@ function Profile() {
                   {editing ? (
                     <input
                       className="border-2 border-indigo-600 px-1"
-                      placeholder={description}
+                      placeholder={description || ''}
                       value={descriptionInput}
                       onChange={(e) => setDescriptionInput(e.target.value)}
                     />
