@@ -1,4 +1,5 @@
 import { createTRPCRouter, protectedProcedure } from '@sat/server/api/trpc';
+import { z } from 'zod';
 
 export const eventRouter = createTRPCRouter({
   getEventsCreatedByCurrentUser: protectedProcedure.query(({ ctx }) =>
@@ -14,4 +15,16 @@ export const eventRouter = createTRPCRouter({
       include: { attendees: { include: { user: { include: { profile: true } } } } },
     })
   ),
+
+  getEventsByDate: protectedProcedure.input(z.object({ date: z.date() })).query(({ ctx, input }) => {
+    const dateWithNoTimeStamp = input.date.toISOString().split('T')[0];
+
+    return ctx.prisma.event.findMany({
+      where: { date: new Date(dateWithNoTimeStamp as string) },
+      include: {
+        attendees: { include: { user: { include: { profile: true } } } },
+        creator: { include: { profile: true } },
+      },
+    });
+  }),
 });

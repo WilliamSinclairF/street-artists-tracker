@@ -86,7 +86,8 @@ model Event {
     type        String
     title       String
     description String @db.Text
-    date        DateTime
+    date        DateTime @db.Date
+    time        DateTime @db.Time
     latitude    Float
     longitude   Float
 
