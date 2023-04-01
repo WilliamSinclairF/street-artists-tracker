@@ -44,14 +44,12 @@ export const HomepageBanner = () => {
                   colour="bg-orange-500"
                   hoverColour="bg-orange-400"
                   signInText="Artist"
-                  signOutText="SignOut"
-                />
+                  signOutText="SignOut" isArtist={true}                />
                 <AuthButton
                   colour="bg-blue-700"
                   hoverColour="bg-blue-600"
                   signInText="Art Lover"
-                  signOutText="SignOut"
-                />
+                  signOutText="SignOut" isArtist={false}                />
               </div>
             </>
           )}

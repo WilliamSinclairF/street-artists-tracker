@@ -35,7 +35,7 @@ export const Nav = ({ position }: NavProps) => {
         </ul>
       </menu>
       {sessionData && (
-        <AuthButton colour="bg-blue-700" hoverColour="bg-blue-600" signInText={'Sign in'} signOutText={'Sign out'} />
+        <AuthButton colour="bg-blue-700" hoverColour="bg-blue-600" signInText={'Sign in'} signOutText={'Sign out'} isArtist={false} />
       )}
     </nav>
   );
