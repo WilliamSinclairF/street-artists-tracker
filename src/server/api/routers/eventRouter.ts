@@ -2,10 +2,33 @@ import { createTRPCRouter, protectedProcedure } from '@sat/server/api/trpc';
 import { z } from 'zod';
 
 export const eventRouter = createTRPCRouter({
+  createEvent: protectedProcedure
+    .input(
+      z.object({
+        date: z.date(),
+        time: z.date(),
+        description: z.string(),
+        type: z.string(),
+        title: z.string(),
+        latitude: z.number(),
+        longitude: z.number(),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const user = ctx.session.user;
+      return ctx.prisma.event.create({
+        data: {
+          creator: { connect: { id: user.id } },
+          ...input,
+        },
+      });
+    }),
+
   getEventsCreatedByCurrentUser: protectedProcedure.query(({ ctx }) =>
     ctx.prisma.event.findMany({
       where: { creatorId: ctx.session.user.id },
       include: { attendees: { include: { event: false, user: { include: { profile: true } } } } },
+      orderBy: { createdAt: 'desc' },
     })
   ),
 
@@ -13,6 +36,7 @@ export const eventRouter = createTRPCRouter({
     ctx.prisma.event.findMany({
       where: { attendees: { some: { userId: ctx.session.user.id } } },
       include: { attendees: { include: { user: { include: { profile: true } } } } },
+      orderBy: { createdAt: 'desc' },
     })
   ),
 
@@ -24,6 +48,7 @@ export const eventRouter = createTRPCRouter({
         attendees: { include: { user: { include: { profile: true } } } },
         creator: { include: { profile: true } },
       },
+      orderBy: { createdAt: 'desc' },
     });
   }),
 
@@ -34,6 +59,7 @@ export const eventRouter = createTRPCRouter({
         attendees: { include: { user: { include: { profile: true } } } },
         creator: { include: { profile: true } },
       },
+      orderBy: { createdAt: 'desc' },
     });
 
     return event;

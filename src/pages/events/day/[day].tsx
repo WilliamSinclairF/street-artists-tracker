@@ -36,6 +36,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
       attendees: { include: { user: { include: { profile: true } } } },
       creator: { include: { profile: true } },
     },
+    orderBy: { createdAt: 'desc' },
   });
 
   const datesOfNextSevenDays = Array.from({ length: 7 }).map((_, i) => ({

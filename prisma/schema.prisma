@@ -90,6 +90,7 @@ model Event {
     time        DateTime @db.Time
     latitude    Float
     longitude   Float
+    createdAt   DateTime @default(now())
 
     @@index([creatorId])
 }
