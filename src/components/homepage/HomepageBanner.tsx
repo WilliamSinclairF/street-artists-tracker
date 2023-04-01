@@ -1,8 +1,28 @@
 import AuthButton from '../auth/AuthButton';
 import { useSession } from 'next-auth/react';
+import { api } from '@sat/utils/api';
+import { useEffect } from 'react';
 
 export const HomepageBanner = () => {
   const { data: sessionData } = useSession();
+
+  const mutation = api.profileRouter.createOrUpdateProfile.useMutation({
+    onError: (error) => console.log(error),
+    onSuccess: (data) => console.log(data),
+  });
+
+  useEffect(() => {
+    const isArtist = localStorage.getItem('isArtist') === 'true';
+    console.log('Stored isArtist value:', isArtist);
+
+    mutation.mutate({
+      description: 'test',
+      firstName: 'test',
+      lastName: 'test',
+      isArtist,
+    });
+  }, []);
+
   return (
     <main
       className={`flex h-[100vh] items-center justify-center bg-slate-300 ${
@@ -45,12 +65,14 @@ export const HomepageBanner = () => {
                   hoverColour="bg-orange-400"
                   signInText="Artist"
                   signOutText="SignOut"
+                  isArtist={true}
                 />
                 <AuthButton
                   colour="bg-blue-700"
                   hoverColour="bg-blue-600"
                   signInText="Art Lover"
                   signOutText="SignOut"
+                  isArtist={false}
                 />
               </div>
             </>
