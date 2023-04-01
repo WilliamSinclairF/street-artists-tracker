@@ -56,16 +56,16 @@ const JustTesting: NextPage = () => {
       <h3 className="m-2 text-2xl font-bold uppercase text-blue-600">your events</h3>
 
       {getEventsCreatedByCurrentUserQuery.data?.map((event) => (
-        <div className="m-5 border-4 p-4">
-          <EventTest key={event.id} event={event} />
+        <div className="m-5 border-4 p-4" key={event.id}>
+          <EventTest event={event} />
         </div>
       ))}
 
-      <h3 className="m-2 text-2xl font-bold uppercase text-blue-600">events you're attending</h3>
+      <h3 className="m-2 text-2xl font-bold uppercase text-blue-600">events you&apos;re attending</h3>
 
       {getEventsCurrentUserIsAttendingQuery.data?.map((event) => (
-        <div className="m-5 border-4 p-4">
-          <EventTest key={event.id} event={event} />
+        <div className="m-5 border-4 p-4" key={event.id}>
+          <EventTest event={event} />
         </div>
       ))}
     </>
@@ -111,7 +111,7 @@ const EventTest = ({
         <li>
           <p className="font-bold uppercase">attendees</p>{' '}
           {event.attendees
-            ?.map((attendee) => `${attendee.user.profile?.firstName} ${attendee.user.profile?.lastName}`)
+            ?.map((attendee) => `${attendee.user.profile?.firstName || ''} ${attendee.user.profile?.lastName || ''}`)
             .join(', ')}
         </li>
       )}
