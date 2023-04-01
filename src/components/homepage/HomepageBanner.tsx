@@ -1,8 +1,12 @@
 import AuthButton from '../auth/AuthButton';
 import { useSession } from 'next-auth/react';
+import { api } from '@sat/utils/api';
 
 export const HomepageBanner = () => {
   const { data: sessionData } = useSession();
+  const { testData } = api.isArtistRouter.getAll.useQuery();
+  console.log(testData);
+
   return (
     <main
       className={`flex h-[100vh] items-center justify-center bg-slate-300 ${
@@ -44,12 +48,16 @@ export const HomepageBanner = () => {
                   colour="bg-orange-500"
                   hoverColour="bg-orange-400"
                   signInText="Artist"
-                  signOutText="SignOut" isArtist={true}                />
+                  signOutText="SignOut"
+                  isArtist={true}
+                />
                 <AuthButton
                   colour="bg-blue-700"
                   hoverColour="bg-blue-600"
                   signInText="Art Lover"
-                  signOutText="SignOut" isArtist={false}                />
+                  signOutText="SignOut"
+                  isArtist={false}
+                />
               </div>
             </>
           )}
