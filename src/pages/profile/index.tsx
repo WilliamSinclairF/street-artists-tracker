@@ -81,8 +81,8 @@ function Profile() {
       <>
         <Nav position="relative" />
         <main>
-          <div className="banner h-[25vh] bg-slate-400 bg-[url('/images/banner-4-min.jpg')] bg-cover bg-[center_bottom_-3rem]"></div>
-          <div className="panel flex h-[71.5vh]">
+          <div className="banner h-[35vh] bg-slate-400 bg-[url('/images/banner-4-min.jpg')] bg-cover bg-[center_bottom_-3rem]"></div>
+          <div className="panel flex h-[100vh]">
             <div className="left h-full bg-slate-300 px-8">
               <div className="-mt-16 flex flex-col items-center">
                 {sessionData?.user?.image && (
