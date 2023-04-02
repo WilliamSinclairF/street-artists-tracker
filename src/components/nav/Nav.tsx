@@ -17,7 +17,7 @@ export const Nav = ({ position }: NavProps) => {
           <Image className="h-full w-full" priority src="/images/logo.svg" fill alt="Street Artist Tracker" />
         </div>
       </Link>
-      <menu className="m-auto w-full max-w-[180px]">
+      <menu className="m-auto w-full max-w-[200px]">
         <ul className="flex w-full justify-between">
           {sessionData && (
             <>
@@ -28,7 +28,7 @@ export const Nav = ({ position }: NavProps) => {
               </li>
               <li>
                 <Link className="text-lg font-medium text-slate-900 hover:text-slate-700" href={'/events'}>
-                  Map
+                  Events
                 </Link>
               </li>
               <li>

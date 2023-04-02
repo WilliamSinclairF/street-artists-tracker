@@ -38,7 +38,7 @@ export const HomepageBanner = () => {
                 Welcome back <span className="text-[#C84449]">{sessionData.user?.name}</span> 🚀!
               </h2>
               <h3 className="pt-2 text-2xl text-white">Check out some awesome artists in your City today!</h3>
-              <a href={'/map'}>
+              <a href={'/events'}>
                 <button className="mt-5 rounded-full bg-orange-400 px-8 py-3 font-semibold text-white hover:bg-orange-500">
                   Explore Artists
                 </button>

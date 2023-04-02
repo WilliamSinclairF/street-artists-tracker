@@ -1,28 +1,61 @@
-# Create T3 App
+# Street Artist Tracker
+### A hackathon project for [MapHacks 2](https://organize.mlh.io/participants/events/9159-maphacks-2) - Mar.31st - Apr.2nd 2023!
+### View [Video Demo](https://www.youtube.com/watch?v=zqrqL3og6x0)
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+## Hackathon Team:
+- [William Sinclair](https://github.com/WilliamSinclairF) - Full-Stack Software Engineer
+- [Tyrell Curry](https://github.com/tyrellcurry) - Frontend Developer
 
-## What's next? How do I make an app with this?
+## Table of contents
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+- [Overview](#overview)
+  - [The Hackathon challenge](#the-hackathon-challenge)
+  - [Screenshots](#screenshots)
+- [Our process](#our-process)
+  - [Built with](#built-with)
+  - [What we learned](#what-we-learned)
+  - [Continued development](#continued-development)
+  - [Useful resources](#useful-resources)
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+## Overview
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+### The Hackathon Challenge
 
-## Learn More
+An application built for Street Artists to list their upcoming performances in cities with event details and map pins! A place for Art Lovers to explore local artists in their cities!
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+### Screenshots
+#### Homepage
+![](public/images/SS-1.png)
+#### Events Tab
+![](public/images/SS-2.png)
+#### Artist Pofile
+![](public/images/SS-3.png)
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+## Our Process
 
-## How do I deploy this?
+### Built with
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+- T3 Stack
+- NextJS
+- Prisma
+- TRPC
+- TailwindCSS
+- Google Maps API
+- Local Browser Storage
+
+### What we learned
+
+- This was our first hackathon colaborating together and we got to explore Prisma and TRPC and learn some new things working with that tech!
+- Quick collaboration on Github for code efficiency 
+- Brainstorming using Figma whiteboards
+
+### Continued development
+
+ - We would like to expand some features such as adding an event favouriting option and enhancing some of the UI.
+
+### Useful resources
+
+- [Major League Hacking](https://mlh.io/)
+- [Upcoming Hackathons](https://mlh.io/seasons/2023/events)
+- [MLH Twitch](https://www.twitch.tv/mlh)
