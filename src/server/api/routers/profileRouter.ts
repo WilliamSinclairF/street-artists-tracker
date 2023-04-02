@@ -14,9 +14,9 @@ export const profileRouter = createTRPCRouter({
     .input(
       z.object({
         isArtist: z.boolean().default(false),
-        firstName: z.string(),
-        lastName: z.string(),
-        description: z.string(),
+        firstName: z.string().optional(),
+        lastName: z.string().optional(),
+        description: z.string().optional(),
       })
     )
     .mutation(async ({ ctx, input }) => {
@@ -34,6 +34,9 @@ export const profileRouter = createTRPCRouter({
         return ctx.prisma.profile.create({
           data: {
             user: { connect: { id: user.id } },
+            firstName: '',
+            lastName: '',
+            description: '',
             ...input,
           },
         });

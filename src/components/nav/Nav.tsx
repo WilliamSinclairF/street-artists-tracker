@@ -3,10 +3,13 @@ import AuthButton from '../auth/AuthButton';
 
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
+import NavLink from './NavLink';
 
 interface NavProps {
   position: string;
 }
+
+const navLinkClasses = 'text-md font-medium text-slate-900 hover:text-slate-700 lg:text-lg';
 
 export const Nav = ({ position }: NavProps) => {
   const { data: sessionData } = useSession();

@@ -12,9 +12,9 @@ function Profile() {
 
   // Retrieve profileData from the API
   const { data: profileData } = api.profileRouter.getOne.useQuery();
-  const [firstName, setFirstName] = useState(profileData?.firstName);
-  const [lastName, setLastName] = useState(profileData?.lastName);
-  const [description, setDescription] = useState(profileData?.description);
+  const [firstName, setFirstName] = useState(profileData?.firstName || '');
+  const [lastName, setLastName] = useState(profileData?.lastName || '');
+  const [description, setDescription] = useState(profileData?.description || '');
   const [editing, setEditing] = useState(false);
   const [firstNameInput, setFirstNameInput] = useState('');
   const [lastNameInput, setLastNameInput] = useState('');
@@ -27,9 +27,9 @@ function Profile() {
 
   // Update the firstName state when the profileData changes
   useEffect(() => {
-    setFirstName(profileData?.firstName);
-    setLastName(profileData?.lastName);
-    setDescription(profileData?.description);
+    setFirstName(profileData?.firstName || '');
+    setLastName(profileData?.lastName || '');
+    setDescription(profileData?.description || '');
   }, [profileData]);
 
   // Navigating to Home is not authenticated
@@ -168,7 +168,7 @@ function Profile() {
                 <div className="events">
                   <ul className="grid grid-cols-2 gap-4">
                     {getEventsByUser.data?.map((event) => (
-                      <li className="my-2 rounded-md bg-slate-400 p-2">
+                      <li className="my-2 rounded-md bg-slate-400 p-2" key={event.id}>
                         <p className="text-xl font-semibold">{event.title}</p>
                         <p className="text-sm font-semibold">
                           {event.date
