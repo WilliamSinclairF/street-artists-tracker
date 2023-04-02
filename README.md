@@ -1,6 +1,7 @@
 # Street Artist Tracker
 ### A hackathon project for [MapHacks 2](https://organize.mlh.io/participants/events/9159-maphacks-2) - Mar.31st - Apr.2nd 2023!
 ### View [Video Demo](https://www.youtube.com/watch?v=zqrqL3og6x0)
+### View [Live Page](https://street-artists-tracker.vercel.app/)
 
 ## Hackathon Team:
 - [William Sinclair](https://github.com/WilliamSinclairF) - Full-Stack Software Engineer
@@ -52,7 +53,7 @@ An application built for Street Artists to list their upcoming performances in c
 
 ### Continued development
 
- - We would like to expand some features such as adding an event favouriting option and enhancing some of the UI.
+ - We would like to expand some features such as adding an event favouriting option and enhancing some of the UI
 
 ### Useful resources
 
